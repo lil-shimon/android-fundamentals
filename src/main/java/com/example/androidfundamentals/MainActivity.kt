@@ -3,6 +3,7 @@ package com.example.androidfundamentals
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
@@ -12,29 +13,36 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val rollButton: Button = findViewById(R.id.roll_button)
-        val countUpButton: Button = findViewById(R.id.count_up_button)
+//        val countUpButton: Button = findViewById(R.id.count_up_button)
         rollButton.setOnClickListener { rollDice() }
-        countUpButton.setOnClickListener { countUp() }
+//        countUpButton.setOnClickListener { countUp() }
     }
 
     private fun rollDice() {
-        val resultText: TextView = findViewById(R.id.result_text)
-        val randomInt = (1..6).random()
-        resultText.text = randomInt.toString()
-        Toast.makeText(this, "button clicked", Toast.LENGTH_SHORT).show()
-    }
+        val diceImage: ImageView = findViewById(R.id.dice_image)
 
-    private fun countUp() {
-        val resultText: TextView = findViewById(R.id.result_text)
-
-        if (resultText.text == "Hello World") {
-            resultText.text = "1"
-        } else {
-            var resultInt = resultText.text.toString().toInt()
-            if (resultInt < 6) {
-                resultInt++
-                resultText.text = resultInt.toString()
-            }
+        val diceResource = when ((1..6).random()) {
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
         }
+        diceImage.setImageResource(diceResource)
     }
+
+//    private fun countUp() {
+//        val resultText: TextView = findViewById(R.id.result_text)
+//
+//        if (resultText.text == "Hello World") {
+//            resultText.text = "1"
+//        } else {
+//            var resultInt = resultText.text.toString().toInt()
+//            if (resultInt < 6) {
+//                resultInt++
+//                resultText.text = resultInt.toString()
+//            }
+//        }
+//    }
 }
